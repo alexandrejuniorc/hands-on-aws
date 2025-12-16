@@ -1,0 +1,22 @@
+{
+  "extends": "@tsconfig/node24/tsconfig.json",
+  "compilerOptions": {
+    "paths": {
+      "@/core/*": [
+        "./src/core/*"
+      ],
+      "@/domain/*": [
+        "./src/domain/*"
+      ],
+      "@/infra/*": [
+        "./src/infra/*"
+      ],
+      "@/test/*": [
+        "./test/*"
+      ]
+    },
+    "types": [
+      "vitest/globals"
+    ]
+  }
+}

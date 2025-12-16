@@ -1,0 +1,51 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "author": "Alexandre Junior",
+  "license": "ISC",
+  "type": "commonjs",
+  "keywords": [],
+  "scripts": {
+    "dev": "tsx watch src/infra/main.ts",
+    "start": "node dist/infra/main.js",
+    "build": "tsup src",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "test:ui": "vitest --ui"
+  },
+  "devDependencies": {
+    "@faker-js/faker": "10.1.0",
+    "@rocketseat/eslint-config": "2.2.2",
+    "@tsconfig/node24": "24.0.3",
+    "@types/node": "25.0.2",
+    "@types/supertest": "6.0.3",
+    "@vitest/coverage-v8": "4.0.16",
+    "@vitest/ui": "4.0.16",
+    "eslint-plugin-import": "2.32.0",
+    "prettier": "3.7.4",
+    "supertest": "7.1.4",
+    "tsconfig-paths": "4.2.0",
+    "tsup": "8.5.1",
+    "tsx": "4.21.0",
+    "typescript": "5.9.3",
+    "typescript-eslint": "8.50.0",
+    "unplugin-swc": "1.5.9",
+    "vite-tsconfig-paths": "6.0.1",
+    "vitest": "4.0.16"
+  },
+  "dependencies": {
+    "@fastify/cookie": "11.0.2",
+    "@fastify/cors": "11.2.0",
+    "@fastify/jwt": "10.0.0",
+    "@fastify/swagger": "9.6.1",
+    "@fastify/swagger-ui": "5.2.3",
+    "dotenv": "17.2.3",
+    "fastify": "5.6.2",
+    "fastify-type-provider-zod": "6.1.0",
+    "zod": "4.2.1",
+    "zod-validation-error": "5.0.0"
+  }
+}
