@@ -1,4 +1,4 @@
-import { Product } from "@/domain/pricing/enterprise/product"
+import { Product } from "@/domain/pricing/enterprise/product.entity"
 import { UniqueEntityID } from "@/core/entities/unique-entity-id"
 
 export class DynamoProductMapper {

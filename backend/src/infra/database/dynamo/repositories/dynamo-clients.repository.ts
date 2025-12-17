@@ -1,5 +1,5 @@
-import { ClientsRepository } from "@/domain/pricing/application/repositories/clients-repository"
-import { Client } from "@/domain/pricing/enterprise/client"
+import { ClientsRepository } from "@/domain/pricing/application/repositories/clients.repository"
+import { Client } from "@/domain/pricing/enterprise/client.entity"
 import { dynamoService, DynamoService } from "../dynamo.service"
 import { DynamoClientMapper } from "../mappers/dynamo-client.mapper"
 

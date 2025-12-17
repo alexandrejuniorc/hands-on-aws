@@ -1,5 +1,5 @@
 import { ResourceNotFoundError } from "@/core/errors/resource-not-found.error"
-import { DeleteProductUseCase } from "@/domain/pricing/application/use-cases/delete-product"
+import { DeleteProductUseCase } from "@/domain/pricing/application/use-cases/delete-product.use-case"
 import { productsRepository } from "@/infra/database/dynamo/repositories/dynamo-products.repository"
 
 import { FastifyReply, FastifyRequest } from "fastify"

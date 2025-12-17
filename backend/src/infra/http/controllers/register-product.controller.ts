@@ -1,5 +1,5 @@
 import { ResourceAlreadyExistsError } from "@/core/errors/resource-already-exists.error"
-import { RegisterProductUseCase } from "@/domain/pricing/application/use-cases/register-product"
+import { RegisterProductUseCase } from "@/domain/pricing/application/use-cases/register-product.use-case"
 import { productsRepository } from "@/infra/database/dynamo/repositories/dynamo-products.repository"
 
 import { FastifyReply, FastifyRequest } from "fastify"

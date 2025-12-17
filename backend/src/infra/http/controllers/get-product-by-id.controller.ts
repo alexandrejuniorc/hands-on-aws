@@ -1,9 +1,10 @@
 import { ResourceNotFoundError } from "@/core/errors/resource-not-found.error"
-import { GetProductByIdUseCase } from "@/domain/pricing/application/use-cases/get-product-by-id"
+import { GetProductByIdUseCase } from "@/domain/pricing/application/use-cases/get-product-by-id.use-case"
 import { productsRepository } from "@/infra/database/dynamo/repositories/dynamo-products.repository"
 
 import { FastifyReply, FastifyRequest } from "fastify"
 import z from "zod"
+import { HttpProductPresenter } from "../presenters/http-product.presenter"
 
 const getProductByIdParamsSchema = z.object({
   id: z.string().uuid(),
@@ -32,17 +33,7 @@ export class GetProductByIdController {
 
     const { product } = result.value
 
-    return reply.status(200).send({
-      product: {
-        id: product.id.toString(),
-        name: product.name,
-        description: product.description,
-        price: product.price,
-        quantity: product.quantity,
-        createdAt: product.createdAt,
-        updatedAt: product.updatedAt,
-      },
-    })
+    return reply.status(200).send({ product: HttpProductPresenter.toHTTP(product) })
   }
 }
 

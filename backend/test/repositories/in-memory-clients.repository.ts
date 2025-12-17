@@ -1,6 +1,6 @@
 import { UniqueEntityID } from "@/core/entities/unique-entity-id"
-import { ClientsRepository } from "@/domain/pricing/application/repositories/clients-repository"
-import { Client } from "@/domain/pricing/enterprise/client"
+import { ClientsRepository } from "@/domain/pricing/application/repositories/clients.repository"
+import { Client } from "@/domain/pricing/enterprise/client.entity"
 
 export class InMemoryClientsRepository implements ClientsRepository {
   public items: Client[] = []

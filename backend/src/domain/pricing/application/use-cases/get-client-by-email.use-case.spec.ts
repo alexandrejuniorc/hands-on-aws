@@ -1,6 +1,6 @@
-import { InMemoryClientsRepository } from "@/test/repositories/in-memory-clients-repository"
-import { makeClient } from "@/test/factories/make-client"
-import { GetClientByEmailUseCase } from "./get-client-by-email"
+import { InMemoryClientsRepository } from "@/test/repositories/in-memory-clients.repository"
+import { makeClient } from "@/test/factories/make-client.factory"
+import { GetClientByEmailUseCase } from "./get-client-by-email.use-case"
 
 let inMemoryClientsRepository: InMemoryClientsRepository
 let sut: GetClientByEmailUseCase // SUT -> System Under Test

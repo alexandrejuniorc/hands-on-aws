@@ -1,5 +1,5 @@
 import { Either, left, right } from "@/core/either"
-import { ClientsRepository } from "../repositories/clients-repository"
+import { ClientsRepository } from "../repositories/clients.repository"
 import { ResourceNotFoundError } from "@/core/errors/resource-not-found.error"
 
 interface DeleteClientRequest {

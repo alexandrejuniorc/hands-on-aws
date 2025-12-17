@@ -1,5 +1,5 @@
 import { Either, left, right } from "@/core/either"
-import { ProductsRepository } from "../repositories/products-repository"
+import { ProductsRepository } from "../repositories/products.repository"
 import { ResourceNotFoundError } from "@/core/errors/resource-not-found.error"
 
 interface DeleteProductRequest {

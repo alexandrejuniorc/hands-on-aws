@@ -1,7 +1,7 @@
 import { faker } from "@faker-js/faker"
 
 import { UniqueEntityID } from "@/core/entities/unique-entity-id"
-import { Product, ProductProps } from "@/domain/pricing/enterprise/product"
+import { Product, ProductProps } from "@/domain/pricing/enterprise/product.entity"
 
 export function makeProduct(override: Partial<ProductProps> = {}, id?: UniqueEntityID): Product {
   const product = Product.create(

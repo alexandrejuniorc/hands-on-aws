@@ -1,5 +1,5 @@
-import { InMemoryProductsRepository } from "@/test/repositories/in-memory-products-repository"
-import { RegisterProductUseCase } from "./register-product"
+import { InMemoryProductsRepository } from "@/test/repositories/in-memory-products.repository"
+import { RegisterProductUseCase } from "./register-product.use-case"
 
 let inMemoryProductsRepository: InMemoryProductsRepository
 let sut: RegisterProductUseCase // SUT -> System Under Test

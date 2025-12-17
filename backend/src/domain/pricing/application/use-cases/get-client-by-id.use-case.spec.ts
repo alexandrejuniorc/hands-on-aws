@@ -1,6 +1,6 @@
-import { InMemoryClientsRepository } from "@/test/repositories/in-memory-clients-repository"
-import { GetClientByIdUseCase } from "./get-client-by-id"
-import { makeClient } from "@/test/factories/make-client"
+import { InMemoryClientsRepository } from "@/test/repositories/in-memory-clients.repository"
+import { GetClientByIdUseCase } from "./get-client-by-id.use-case"
+import { makeClient } from "@/test/factories/make-client.factory"
 import { UniqueEntityID } from "@/core/entities/unique-entity-id"
 
 let inMemoryClientsRepository: InMemoryClientsRepository

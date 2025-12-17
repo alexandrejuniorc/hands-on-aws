@@ -1,7 +1,7 @@
 import { Either, left, right } from "@/core/either"
 import { ResourceAlreadyExistsError } from "@/core/errors/resource-already-exists.error"
-import { Product } from "../../enterprise/product"
-import { ProductsRepository } from "../repositories/products-repository"
+import { Product } from "../../enterprise/product.entity"
+import { ProductsRepository } from "../repositories/products.repository"
 
 interface RegisterProductRequest {
   name: string

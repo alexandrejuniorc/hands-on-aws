@@ -11,10 +11,8 @@
     "dev": "tsx watch src/infra/main.ts",
     "start": "node dist/infra/main.js",
     "build": "tsup src",
-    "test": "vitest run",
     "test:watch": "vitest",
-    "test:coverage": "vitest run --coverage",
-    "test:ui": "vitest --ui"
+    "test:coverage": "vitest run --coverage"
   },
   "devDependencies": {
     "@faker-js/faker": "10.1.0",

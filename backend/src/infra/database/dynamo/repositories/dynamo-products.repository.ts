@@ -1,5 +1,5 @@
-import { ProductsRepository } from "@/domain/pricing/application/repositories/products-repository"
-import { Product } from "@/domain/pricing/enterprise/product"
+import { ProductsRepository } from "@/domain/pricing/application/repositories/products.repository"
+import { Product } from "@/domain/pricing/enterprise/product.entity"
 import { dynamoService, DynamoService } from "../dynamo.service"
 import { DynamoProductMapper } from "../mappers/dynamo-product.mapper"
 

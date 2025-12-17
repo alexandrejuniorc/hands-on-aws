@@ -1,5 +1,5 @@
 import { ResourceAlreadyExistsError } from "@/core/errors/resource-already-exists.error"
-import { RegisterClientUseCase } from "@/domain/pricing/application/use-cases/register-client"
+import { RegisterClientUseCase } from "@/domain/pricing/application/use-cases/register-client.use-case"
 import { bcryptHasher } from "@/infra/cryptography/bcrypt-hasher"
 import { clientsRepository } from "@/infra/database/dynamo/repositories/dynamo-clients.repository"
 

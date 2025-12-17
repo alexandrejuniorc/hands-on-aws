@@ -1,7 +1,7 @@
 import { Either, left, right } from "@/core/either"
 import { ResourceAlreadyExistsError } from "@/core/errors/resource-already-exists.error"
-import { Client } from "../../enterprise/client"
-import { ClientsRepository } from "../repositories/clients-repository"
+import { Client } from "../../enterprise/client.entity"
+import { ClientsRepository } from "../repositories/clients.repository"
 import { HashGenerator } from "../cryptography/hash-generator"
 
 interface RegisterClientRequest {

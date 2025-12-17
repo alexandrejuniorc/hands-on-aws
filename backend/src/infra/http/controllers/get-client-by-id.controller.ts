@@ -1,9 +1,10 @@
 import { ResourceNotFoundError } from "@/core/errors/resource-not-found.error"
-import { GetClientByIdUseCase } from "@/domain/pricing/application/use-cases/get-client-by-id"
+import { GetClientByIdUseCase } from "@/domain/pricing/application/use-cases/get-client-by-id.use-case"
 import { clientsRepository } from "@/infra/database/dynamo/repositories/dynamo-clients.repository"
 
 import { FastifyReply, FastifyRequest } from "fastify"
 import z from "zod"
+import { HttpClientPresenter } from "../presenters/http-client.presenter"
 
 const getClientByIdParamsSchema = z.object({
   id: z.string().uuid(),
@@ -30,15 +31,7 @@ export class GetClientByIdController {
 
     const { client } = result.value
 
-    return reply.status(200).send({
-      client: {
-        id: client.id.toString(),
-        name: client.name,
-        email: client.email,
-        createdAt: client.createdAt,
-        updatedAt: client.updatedAt,
-      },
-    })
+    return reply.status(200).send({ client: HttpClientPresenter.toHTTP(client) })
   }
 }
 

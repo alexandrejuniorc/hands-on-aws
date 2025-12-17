@@ -1,4 +1,4 @@
-import { Client } from "@/domain/pricing/enterprise/client"
+import { Client } from "@/domain/pricing/enterprise/client.entity"
 
 export class DynamoClientMapper {
   static toDomain(raw: any): Client {

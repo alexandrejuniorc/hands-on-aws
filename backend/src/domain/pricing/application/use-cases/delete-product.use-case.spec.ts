@@ -1,6 +1,6 @@
-import { InMemoryProductsRepository } from "@/test/repositories/in-memory-products-repository"
-import { DeleteProductUseCase } from "./delete-product"
-import { makeProduct } from "@/test/factories/make-product"
+import { InMemoryProductsRepository } from "@/test/repositories/in-memory-products.repository"
+import { DeleteProductUseCase } from "./delete-product.use-case"
+import { makeProduct } from "@/test/factories/make-product.factory"
 import { UniqueEntityID } from "@/core/entities/unique-entity-id"
 
 let inMemoryProductsRepository: InMemoryProductsRepository

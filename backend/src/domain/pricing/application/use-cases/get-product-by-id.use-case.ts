@@ -1,6 +1,6 @@
 import { Either, left, right } from "@/core/either"
-import { Product } from "../../enterprise/product"
-import { ProductsRepository } from "../repositories/products-repository"
+import { Product } from "../../enterprise/product.entity"
+import { ProductsRepository } from "../repositories/products.repository"
 import { ResourceNotFoundError } from "@/core/errors/resource-not-found.error"
 
 interface GetProductByIdUseCaseRequest {

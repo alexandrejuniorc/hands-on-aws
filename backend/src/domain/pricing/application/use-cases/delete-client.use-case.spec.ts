@@ -1,6 +1,6 @@
-import { InMemoryClientsRepository } from "@/test/repositories/in-memory-clients-repository"
-import { DeleteClientUseCase } from "./delete-client"
-import { makeClient } from "@/test/factories/make-client"
+import { InMemoryClientsRepository } from "@/test/repositories/in-memory-clients.repository"
+import { DeleteClientUseCase } from "./delete-client.use-case"
+import { makeClient } from "@/test/factories/make-client.factory"
 import { UniqueEntityID } from "@/core/entities/unique-entity-id"
 
 let inMemoryStudentsRepository: InMemoryClientsRepository

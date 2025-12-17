@@ -1,5 +1,5 @@
-import { ProductsRepository } from "@/domain/pricing/application/repositories/products-repository"
-import { Product } from "@/domain/pricing/enterprise/product"
+import { ProductsRepository } from "@/domain/pricing/application/repositories/products.repository"
+import { Product } from "@/domain/pricing/enterprise/product.entity"
 
 export class InMemoryProductsRepository implements ProductsRepository {
   public items: Product[] = []

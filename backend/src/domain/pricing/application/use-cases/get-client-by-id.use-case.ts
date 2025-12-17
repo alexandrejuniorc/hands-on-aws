@@ -1,6 +1,6 @@
 import { Either, left, right } from "@/core/either"
-import { Client } from "../../enterprise/client"
-import { ClientsRepository } from "../repositories/clients-repository"
+import { Client } from "../../enterprise/client.entity"
+import { ClientsRepository } from "../repositories/clients.repository"
 import { ResourceNotFoundError } from "@/core/errors/resource-not-found.error"
 
 interface GetClientByIdUseCaseRequest {
