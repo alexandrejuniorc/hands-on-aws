@@ -13,6 +13,7 @@ import {
 import { env } from "./env/env"
 import { ZodError } from "zod"
 import { routes } from "./http/controllers/routes"
+import { secretsManagerService } from "./env/secrets-manager.service"
 
 export const app = fastify().withTypeProvider<ZodTypeProvider>()
 
@@ -63,11 +64,21 @@ app.setErrorHandler((error, _, reply) => {
   return reply.status(500).send({ message: "Internal server error." })
 })
 
-app
-  .listen({
-    host: "0.0.0.0",
-    port: env.PORT,
-  })
-  .then(() => {
-    console.log("🚀 HTTP server Running!")
-  })
+async function bootstrap() {
+  try {
+    await secretsManagerService.reload()
+    console.log("⏳ Loading AWS Secrets Manager...")
+
+    await app.listen({
+      host: "0.0.0.0",
+      port: env.PORT,
+    })
+
+    console.log(`🚀 HTTP server running on port ${env.PORT}!`)
+  } catch (error) {
+    console.error("❌ Failed to start server:", error)
+    process.exit(1)
+  }
+}
+
+bootstrap()
