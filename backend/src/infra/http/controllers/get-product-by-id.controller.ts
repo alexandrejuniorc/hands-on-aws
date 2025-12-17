@@ -16,9 +16,7 @@ export class GetProductByIdController {
   async handle(request: FastifyRequest, reply: FastifyReply) {
     const { id } = getProductByIdParamsSchema.parse(request.params)
 
-    const result = await this.getProductByIdUseCase.execute({
-      productId: id,
-    })
+    const result = await this.getProductByIdUseCase.execute({ id })
 
     if (result.isLeft()) {
       const error = result.value

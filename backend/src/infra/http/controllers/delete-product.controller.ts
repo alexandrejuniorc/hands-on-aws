@@ -15,9 +15,7 @@ export class DeleteProductController {
   async handle(request: FastifyRequest, reply: FastifyReply) {
     const { id } = deleteProductParamsSchema.parse(request.params)
 
-    const result = await this.deleteProductUseCase.execute({
-      productId: id,
-    })
+    const result = await this.deleteProductUseCase.execute({ id })
 
     if (result.isLeft()) {
       const error = result.value

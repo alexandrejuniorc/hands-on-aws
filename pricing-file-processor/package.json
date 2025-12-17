@@ -1,0 +1,28 @@
+{
+  "name": "pricing-file-processor",
+  "version": "1.0.0",
+  "description": "Lambda function to process S3 files and load products into DynamoDB",
+  "main": "dist/handlers/s3-event.handler.js",
+  "author": "Alexandre Junior",
+  "license": "ISC",
+  "scripts": {
+    "build": "tsup src"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "8.10.145",
+    "@types/node": "20.10.5",
+    "@types/papaparse": "5.3.14",
+    "@types/uuid": "9.0.7",
+    "typescript": "5.3.3"
+  },
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "3.952.0",
+    "@aws-sdk/client-s3": "3.952.0",
+    "@aws-sdk/client-secrets-manager": "3.952.0",
+    "@aws-sdk/lib-dynamodb": "3.952.0",
+    "papaparse": "5.4.1",
+    "uuid": "9.0.1",
+    "xlsx": "0.18.5",
+    "zod": "3.22.4"
+  }
+}
