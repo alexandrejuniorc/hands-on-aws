@@ -2,6 +2,10 @@ import { ProductsRepository } from "@/domain/pricing/application/repositories/pr
 import { Product } from "@/domain/pricing/enterprise/product.entity"
 import { dynamoService, DynamoService } from "../dynamo.service"
 import { DynamoProductMapper } from "../mappers/dynamo-product.mapper"
+import {
+  DynamoDBPaginationParams,
+  DynamoDBPaginatedResponse,
+} from "@/core/repositories/pagination-params"
 
 export class DynamoProductsRepository implements ProductsRepository {
   constructor(private readonly dynamoService: DynamoService) {}
@@ -36,6 +40,22 @@ export class DynamoProductsRepository implements ProductsRepository {
     }
 
     return DynamoProductMapper.toDomain(results[0])
+  }
+
+  async findAll(params: DynamoDBPaginationParams): Promise<DynamoDBPaginatedResponse<Product>> {
+    const result = await this.dynamoService.scan("ClientsTable", {
+      limit: params.limit,
+      lastEvaluatedKey: params.lastEvaluatedKey,
+      filters: params.filters,
+    })
+
+    const products = result.items.map((item) => DynamoProductMapper.toDomain(item))
+
+    return {
+      items: products,
+      count: result.count,
+      lastEvaluatedKey: result.lastEvaluatedKey,
+    }
   }
 
   update(product: Product): Promise<void> {

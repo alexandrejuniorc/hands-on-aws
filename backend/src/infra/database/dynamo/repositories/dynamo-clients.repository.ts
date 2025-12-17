@@ -2,6 +2,10 @@ import { ClientsRepository } from "@/domain/pricing/application/repositories/cli
 import { Client } from "@/domain/pricing/enterprise/client.entity"
 import { dynamoService, DynamoService } from "../dynamo.service"
 import { DynamoClientMapper } from "../mappers/dynamo-client.mapper"
+import {
+  DynamoDBPaginationParams,
+  DynamoDBPaginatedResponse,
+} from "@/core/repositories/pagination-params"
 
 export class DynamoClientsRepository implements ClientsRepository {
   constructor(
@@ -39,6 +43,22 @@ export class DynamoClientsRepository implements ClientsRepository {
     }
 
     return DynamoClientMapper.toDomain(result)
+  }
+
+  async findAll(params: DynamoDBPaginationParams): Promise<DynamoDBPaginatedResponse<Client>> {
+    const result = await this.dynamoService.scan("ClientsTable", {
+      limit: params.limit,
+      lastEvaluatedKey: params.lastEvaluatedKey,
+      filters: params.filters,
+    })
+
+    const clients = result.items.map((item) => DynamoClientMapper.toDomain(item))
+
+    return {
+      items: clients,
+      count: result.count,
+      lastEvaluatedKey: result.lastEvaluatedKey,
+    }
   }
 
   update(client: Client): Promise<void> {

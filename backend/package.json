@@ -24,6 +24,7 @@
     "@vitest/coverage-v8": "4.0.16",
     "@vitest/ui": "4.0.16",
     "eslint-plugin-import": "2.32.0",
+    "git-commit-msg-linter": "5.0.8",
     "prettier": "3.7.4",
     "supertest": "7.1.4",
     "tsconfig-paths": "4.2.0",

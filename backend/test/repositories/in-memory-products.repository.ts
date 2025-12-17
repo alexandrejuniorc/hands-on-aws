@@ -1,5 +1,10 @@
 import { ProductsRepository } from "@/domain/pricing/application/repositories/products.repository"
 import { Product } from "@/domain/pricing/enterprise/product.entity"
+import { UniqueEntityID } from "@/core/entities/unique-entity-id"
+import type {
+  DynamoDBPaginationParams,
+  DynamoDBPaginatedResponse,
+} from "@/core/repositories/pagination-params"
 
 export class InMemoryProductsRepository implements ProductsRepository {
   public items: Product[] = []
@@ -26,6 +31,19 @@ export class InMemoryProductsRepository implements ProductsRepository {
     }
 
     return product
+  }
+
+  async findAll(params: DynamoDBPaginationParams): Promise<DynamoDBPaginatedResponse<Product>> {
+    const products = this.items.slice(0, params.limit ?? this.items.length)
+
+    return {
+      items: products,
+      count: products.length,
+      lastEvaluatedKey:
+        products.length < this.items.length
+          ? new UniqueEntityID(products[products.length - 1].id.toString())
+          : undefined,
+    }
   }
 
   update(product: Product): Promise<void> {
