@@ -6,19 +6,26 @@ import {
   DynamoDBPaginationParams,
   DynamoDBPaginatedResponse,
 } from "@/core/repositories/pagination-params"
+import { secretsManagerService, SecretsManagerService } from "@/infra/env/secrets-manager.service"
 
 export class DynamoProductsRepository implements ProductsRepository {
-  constructor(private readonly dynamoService: DynamoService) {}
+  constructor(
+    private readonly dynamoService: DynamoService,
+    private readonly secretsManagerService: SecretsManagerService,
+  ) {}
+
+  private get tableName(): string {
+    return this.secretsManagerService.getProperty("PRODUCTS_TABLE")
+  }
 
   async create(product: Product): Promise<void> {
     const newProduct = DynamoProductMapper.toPersistence(product)
 
-    await this.dynamoService.create("ProductsTable", newProduct)
+    await this.dynamoService.create(this.tableName, newProduct)
   }
 
   async findById(id: string): Promise<Product | null> {
-    const result = await this.dynamoService.findById("ProductsTable", id)
-
+    const result = await this.dynamoService.findById(this.tableName, id)
     if (!result) {
       return null
     }
@@ -28,7 +35,7 @@ export class DynamoProductsRepository implements ProductsRepository {
 
   async findByName(name: string): Promise<Product | null> {
     const results = await this.dynamoService.query(
-      "ProductsTable",
+      this.tableName,
       "name-index",
       "#name = :name",
       { "#name": "name" },
@@ -43,7 +50,7 @@ export class DynamoProductsRepository implements ProductsRepository {
   }
 
   async findAll(params: DynamoDBPaginationParams): Promise<DynamoDBPaginatedResponse<Product>> {
-    const result = await this.dynamoService.scan("ClientsTable", {
+    const result = await this.dynamoService.scan(this.tableName, {
       limit: params.limit,
       lastEvaluatedKey: params.lastEvaluatedKey,
       filters: params.filters,
@@ -63,8 +70,8 @@ export class DynamoProductsRepository implements ProductsRepository {
   }
 
   async delete(id: string): Promise<void> {
-    await this.dynamoService.delete("ProductsTable", { id })
+    await this.dynamoService.delete(this.tableName, { id })
   }
 }
 
-export const productsRepository = new DynamoProductsRepository(dynamoService)
+export const productsRepository = new DynamoProductsRepository(dynamoService, secretsManagerService)
