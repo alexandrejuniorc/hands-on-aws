@@ -24,17 +24,8 @@ app.register(fastifyCors, { origin: "*" })
 app.register(fastifySwagger, {
   openapi: {
     info: {
-      title: "Gympass API",
+      title: "Hands On AWS - Pricing Service API",
       version: "1.0.0",
-    },
-    components: {
-      securitySchemes: {
-        bearerAuth: {
-          type: "http",
-          scheme: "bearer",
-          bearerFormat: "JWT",
-        },
-      },
     },
   },
   transform: jsonSchemaTransform,
