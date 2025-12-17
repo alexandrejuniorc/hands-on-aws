@@ -19,7 +19,7 @@ export class DynamoService {
   private docClient: DynamoDBDocumentClient
 
   constructor() {
-    const region = env.AWS_REGION
+    const region = env.AWS_REGION_PRICING
     const accessKeyId = env.AWS_ACCESS_KEY_ID
     const secretAccessKey = env.AWS_SECRET_ACCESS_KEY
 

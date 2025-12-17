@@ -1,3 +1,5 @@
+import { env } from "../config/env";
+
 export class Logger {
   static info(message: string, meta?: Record<string, any>): void {
     console.log(
@@ -39,7 +41,7 @@ export class Logger {
   }
 
   static debug(message: string, meta?: Record<string, any>): void {
-    if (process.env.LOG_LEVEL === "DEBUG") {
+    if (env.LOG_LEVEL === "debug") {
       console.debug(
         JSON.stringify({
           level: "DEBUG",
