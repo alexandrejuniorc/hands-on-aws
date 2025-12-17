@@ -38,6 +38,18 @@ export class Client extends Entity<ClientProps> {
     this.touch()
   }
 
+  get createdAt() {
+    return this.props.createdAt
+  }
+
+  set createdAt(createdAt: Date) {
+    this.props.createdAt = createdAt
+  }
+
+  get updatedAt() {
+    return this.props.updatedAt
+  }
+
   private touch() {
     this.props.updatedAt = new Date()
   }

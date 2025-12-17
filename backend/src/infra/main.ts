@@ -12,8 +12,11 @@ import {
 } from "fastify-type-provider-zod"
 import { env } from "./env/env"
 import { ZodError } from "zod"
+import { routes } from "./http/controllers/routes"
 
 export const app = fastify().withTypeProvider<ZodTypeProvider>()
+
+/* FASTIFY SETTINGS */
 app.setValidatorCompiler(validatorCompiler)
 app.setSerializerCompiler(serializerCompiler)
 
@@ -51,6 +54,10 @@ app.register(fastifyJwt, {
 })
 app.register(fastifyCookie)
 
+/* ROUTES */
+app.register(routes)
+
+/* ERROR HANDLER */
 app.setErrorHandler((error, _, reply) => {
   if (error instanceof ZodError) {
     return reply.status(400).send({ message: "Validation error.", issues: error.format() })
