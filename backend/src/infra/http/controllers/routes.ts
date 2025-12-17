@@ -2,10 +2,12 @@ import { FastifyTypedInstance } from "@/core/types/fastify-instance"
 import { registerClientController } from "./register-client.controller"
 import { getClientByIdController } from "./get-client-by-id.controller"
 import { getClientByEmailController } from "./get-client-by-email.controller"
+import { fetchClientsController } from "./fetch-clients.controller"
 import { deleteClientController } from "./delete-client.controller"
 import { registerProductController } from "./register-product.controller"
 import { getProductByIdController } from "./get-product-by-id.controller"
 import { getProductByNameController } from "./get-product-by-name.controller"
+import { fetchProductsController } from "./fetch-products.controller"
 import { deleteProductController } from "./delete-product.controller"
 import z from "zod"
 
@@ -96,6 +98,37 @@ export async function routes(app: FastifyTypedInstance) {
       },
     },
     getClientByEmailController.handle.bind(getClientByEmailController),
+  )
+
+  app.get(
+    "/clients",
+    {
+      schema: {
+        tags: ["Clients"],
+        summary: "Fetch all clients",
+        description: "Endpoint to fetch all clients with pagination support",
+        querystring: z.object({
+          limit: z.coerce.number().int().positive().optional(),
+          lastEvaluatedKey: z.string().optional(),
+        }),
+        response: {
+          200: z.object({
+            clients: z.array(
+              z.object({
+                id: z.string(),
+                name: z.string(),
+                email: z.string(),
+                createdAt: z.date(),
+                updatedAt: z.date().nullable(),
+              }),
+            ),
+            count: z.number(),
+            lastEvaluatedKey: z.any().optional(),
+          }),
+        },
+      },
+    },
+    fetchClientsController.handle.bind(fetchClientsController),
   )
 
   app.delete(
@@ -212,6 +245,39 @@ export async function routes(app: FastifyTypedInstance) {
       },
     },
     getProductByNameController.handle.bind(getProductByNameController),
+  )
+
+  app.get(
+    "/products",
+    {
+      schema: {
+        tags: ["Products"],
+        summary: "Fetch all products",
+        description: "Endpoint to fetch all products with pagination support",
+        querystring: z.object({
+          limit: z.coerce.number().int().positive().optional(),
+          lastEvaluatedKey: z.string().optional(),
+        }),
+        response: {
+          200: z.object({
+            products: z.array(
+              z.object({
+                id: z.string(),
+                name: z.string(),
+                description: z.string(),
+                price: z.number(),
+                quantity: z.number(),
+                createdAt: z.date(),
+                updatedAt: z.date().nullable(),
+              }),
+            ),
+            count: z.number(),
+            lastEvaluatedKey: z.any().optional(),
+          }),
+        },
+      },
+    },
+    fetchProductsController.handle.bind(fetchProductsController),
   )
 
   app.delete(
