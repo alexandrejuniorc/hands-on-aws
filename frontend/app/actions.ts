@@ -121,12 +121,12 @@ export async function uploadFileToS3(formData: FormData) {
 
   const { S3Client, PutObjectCommand } = await import("@aws-sdk/client-s3");
 
-  // Use AWS_REGION_PRICING as the bucket is located there
+  // Use PRICING_AWS_REGION as the bucket is located there
   const s3Client = new S3Client({
-    region: process.env.AWS_REGION_PRICING || "us-east-2",
+    region: process.env.PRICING_AWS_REGION || "us-east-2",
     credentials: {
-      accessKeyId: process.env.AWS_ACCESS_KEY_ID_PRICING!,
-      secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY_PRICING!,
+      accessKeyId: process.env.PRICING_AWS_ACCESS_KEY_ID!,
+      secretAccessKey: process.env.PRICING_AWS_SECRET_ACCESS_KEY!,
     },
   });
 
